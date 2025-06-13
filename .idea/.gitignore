@@ -1,0 +1,16 @@
+HELP.MD
+BUILD/
+!**/src/main/**
+!**/src/test/**
+
+#IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+#Gradle
+.grade
+
+#Logs
+*.log
