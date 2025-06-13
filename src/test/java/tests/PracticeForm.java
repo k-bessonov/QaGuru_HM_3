@@ -16,21 +16,26 @@ public class PracticeForm {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000;
+        //Configuration.timeout = 5000;
     }
 
-
     @Test
-    void fillFormTest() {
+    void PracticeFormTest () {
 
-        //Заполнение данных
         open("/automation-practice-form");
+
+        //Заполняем ФИО и email
         $("#firstName").setValue("Имя");
         $("#lastName").setValue("Фамилия");
         $("#userEmail").setValue("mailfortest@test.test");
+
+        //Заполняем пол
         $("label[for='gender-radio-1']").click();
+
+        //Заполняем телефон
         $("#userNumber").setValue("8999999999");
 
+        //Заполняем календарь
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").selectOption("1995");
         $(".react-datepicker__month-select").selectOption("March");
@@ -41,27 +46,44 @@ public class PracticeForm {
         чтобы не напороться на случай когда число встречается дважды и выбрать правильный месяц
         */
 
+        //Заполняем предметы
         $("#subjectsInput").setValue("Math").pressEnter();
         $("#subjectsInput").setValue("Physics").pressEnter();
         $("#subjectsInput").setValue("Computer Science").pressEnter();
 
+        //Заполняем хобби
         $("label[for='hobbies-checkbox-1']").click();
         $("label[for='hobbies-checkbox-3']").click();
 
+        //Заполняем фото
+        $("#uploadPicture").uploadFromClasspath("picture.png");
+
+        //Заполняем адрес
         $("#currentAddress").setValue("Москва, Театральный проезд, 5с1");
 
+        //Заполняем штат и город
         $("#state").click();
         $("#react-select-3-input").setValue("NCR").pressEnter();
-
         $("#city").click();
         $("#react-select-4-input").setValue("Gurgaon").pressEnter();
 
         //Нажимаем кнопку
         $("#submit").click();
 
-        //Проверки
+        //Проверки всего что наполняли
 
-
-        //$("html").shouldHave(text("Об этой странице"));
+        $(".table-responsive").
+                shouldHave(
+                        text("Имя Фамилия"),
+                        text("mailfortest@test.test"),
+                        text("Male"),
+                        text("8999999999"),
+                        text("01 March,1995"),
+                        text("Maths, Physics, Computer Science"),
+                        text("Sports, Music"),
+                        text("picture.png"),
+                        text("Москва, Театральный проезд, 5с1"),
+                        text("NCR Gurgaon")
+                );
     }
 }
