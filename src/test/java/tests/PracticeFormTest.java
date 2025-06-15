@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class PracticeForm {
+public class PracticeFormTest {
 
     @BeforeAll
     static void beforeAll() {
@@ -20,7 +20,13 @@ public class PracticeForm {
     }
 
     @Test
-    void PracticeFormTest () {
+    void practiceFormTest () {
+
+        /*Заметки для себя
+        $("#submit") поиск элемента по атрибуту id
+        $(".table-responsive") - поиск по классу
+        $("label[for='gender-radio-1']") - поиск элемента <label> с атрибутом 'for="gender-radio-1"'
+        */
 
         open("/automation-practice-form");
 
